@@ -32,15 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ==========================================================================
-     2. PROJECT CARD HOVER & CLICK INTERACTIONS
+     2. PROJECT CARD HOVER INTERACTIONS
      ========================================================================== */
   const projectsGrid = document.getElementById('projects-grid');
   const projectCards = document.querySelectorAll('.project-card');
 
   projectCards.forEach((card) => {
-    const projectId = card.getAttribute('data-project-id');
-    const projectData = PROJECTS_CONFIG[projectId];
-
     // Mouse Enter: Apply lift to hovered card & dim others
     card.addEventListener('mouseenter', () => {
       if (projectsGrid) projectsGrid.classList.add('has-hover');
@@ -54,24 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const anyHovered = Array.from(projectCards).some((c) => c.classList.contains('is-hovered'));
       if (!anyHovered && projectsGrid) {
         projectsGrid.classList.remove('has-hover');
-      }
-    });
-
-    // Click on Card: If not clicking on an action link, open the project
-    card.addEventListener('click', (e) => {
-      const isActionLink = e.target.closest('.card-btn');
-      if (!isActionLink && projectData && projectData.visitUrl) {
-        window.open(projectData.visitUrl, '_blank', 'noopener,noreferrer');
-      }
-    });
-
-    // Keyboard accessibility: Enter or Space opens project
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        if (!e.target.closest('.card-btn') && projectData && projectData.visitUrl) {
-          e.preventDefault();
-          window.open(projectData.visitUrl, '_blank', 'noopener,noreferrer');
-        }
       }
     });
   });
@@ -130,19 +109,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openContactModal() {
     if (!contactBackdrop) return;
+    contactBackdrop.scrollTop = 0;
     contactBackdrop.classList.add('active');
     contactBackdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
     setActiveNav('contact');
-    // Focus first input field smoothly
-    setTimeout(() => {
-      if (inputName) inputName.focus();
-    }, 150);
+    // Focus first input field smoothly on desktop
+    if (window.innerWidth > 768) {
+      setTimeout(() => {
+        if (inputName) inputName.focus();
+      }, 150);
+    }
   }
 
   function closeContactModal() {
     if (!contactBackdrop) return;
     contactBackdrop.classList.remove('active');
     contactBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
     setActiveNav('work');
   }
 
