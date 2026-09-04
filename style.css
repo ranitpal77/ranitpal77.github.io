@@ -635,8 +635,8 @@ body {
   margin-top: 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -675,7 +675,6 @@ body {
   font-size: 13px;
   font-weight: 500;
   color: #ffffff;
-  margin-left: 12px;
   line-height: 1.4;
   transition: color 0.2s ease;
 }
@@ -685,11 +684,11 @@ body {
 }
 
 .feedback-alert.success {
-  color: #4ade80;
+  color: #ffffff;
 }
 
 .feedback-alert.error {
-  color: #ff6b6b;
+  color: #ffffff;
 }
 
 /* ==========================================================================
