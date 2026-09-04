@@ -13,6 +13,8 @@
   --nav-muted-text: #526372;
   --nav-muted-dash: #384652;
   --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --left-width: 44%;
+  --right-width: 56%;
 }
 
 /* --- Global Reset & Base --- */
@@ -53,11 +55,9 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 48%;
-  min-width: 420px;
-  max-width: 660px;
+  width: var(--left-width, 44%);
   height: 100vh;
-  padding: 85px 40px 60px clamp(40px, 7vw, 118px);
+  padding: clamp(60px, 7vh, 100px) clamp(28px, 2.5vw, 48px) clamp(40px, 5vh, 70px) clamp(40px, 6vw, 120px);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -68,6 +68,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 520px;
 }
 
 /* Hero Title & Bio */
@@ -76,7 +77,7 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(38px, 3.2vw, 48px);
+  font-size: clamp(38px, 3.2vw, 54px);
   font-weight: 700;
   line-height: 1.14;
   letter-spacing: -0.025em;
@@ -85,10 +86,10 @@ body {
 }
 
 .hero-bio {
-  font-size: 15.5px;
+  font-size: clamp(15px, 1.05vw, 17px);
   line-height: 1.68;
   color: var(--text-bio-muted);
-  max-width: 460px;
+  max-width: clamp(440px, 30vw, 520px);
   margin: 0;
 }
 
@@ -258,8 +259,8 @@ body {
    RIGHT PANE: Independently Scrollable Projects Section
    ========================================================================== */
 .right-pane {
-  margin-left: 48%;
-  width: 52%;
+  margin-left: var(--left-width, 44%);
+  width: var(--right-width, 56%);
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -267,7 +268,7 @@ body {
   /* Firefox */
   -ms-overflow-style: none;
   /* IE and Edge */
-  padding: 85px clamp(24px, 4vw, 64px) 140px clamp(16px, 3vw, 36px);
+  padding: clamp(60px, 7vh, 100px) clamp(28px, 3.5vw, 72px) 140px clamp(16px, 2.2vw, 40px);
 }
 
 .right-pane::-webkit-scrollbar {
@@ -277,35 +278,38 @@ body {
 
 .projects-scroll-wrapper {
   width: 100%;
-  max-width: 720px;
+  max-width: none;
 }
 
 /* Two-column Projects Grid */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 342px));
-  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 24px);
+  width: 100%;
   position: relative;
 }
 
 .grid-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(12px, 1.4vw, 24px);
+  min-width: 0;
 }
 
 .col-2 {
-  margin-top: 30px;
+  margin-top: clamp(24px, 2.5vw, 44px);
 }
 
 .project-card {
   width: 100%;
-  max-width: 342px;
-  min-height: 475px;
-  height: 475px;
+  max-width: none;
+  aspect-ratio: 342 / 475;
+  min-height: 440px;
+  height: auto;
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 48px 42px;
+  padding: clamp(34px, 3.2vw, 54px) clamp(26px, 2.4vw, 44px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -332,17 +336,17 @@ body {
 }
 
 .project-meta {
-  font-size: 11.5px;
+  font-size: clamp(11px, 0.8vw, 13px);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-meta-tags);
-  margin-bottom: 10px;
+  margin-bottom: clamp(8px, 0.8vw, 12px);
   transition: color 0.3s ease;
 }
 
 .project-desc {
-  font-size: 14px;
+  font-size: clamp(13.5px, 0.95vw, 16px);
   font-weight: 400;
   color: var(--text-meta-desc);
   line-height: 1.45;
@@ -357,10 +361,10 @@ body {
 }
 
 .project-name {
-  font-size: 24px;
+  font-size: clamp(22px, 1.7vw, 30px);
   font-weight: 600;
   color: var(--text-pure);
-  margin: 0 0 20px 0;
+  margin: 0 0 clamp(14px, 1.3vw, 22px) 0;
   letter-spacing: -0.015em;
   transition: color 0.3s ease;
 }
@@ -368,7 +372,7 @@ body {
 .card-actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: clamp(16px, 1.4vw, 24px);
 }
 
 .card-btn {
@@ -377,7 +381,7 @@ body {
   gap: 8px;
   color: var(--text-actions);
   text-decoration: none;
-  font-size: 13.5px;
+  font-size: clamp(13px, 0.9vw, 15px);
   font-weight: 400;
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -690,32 +694,10 @@ body {
 
 /* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
+   - 100% down to 992px: desktop split layout
+   - Below 992px: single-column / mobile layout
    ========================================================================== */
-@media (max-width: 1024px) {
-  .left-pane {
-    width: 44%;
-    padding-left: 36px;
-    padding-right: 24px;
-  }
-
-  .right-pane {
-    margin-left: 44%;
-    width: 56%;
-    padding-left: 20px;
-    padding-right: 36px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-  }
-
-  .col-2 {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 991px) {
 
   html,
   body {
@@ -740,6 +722,7 @@ body {
 
   .left-pane-inner {
     gap: 36px;
+    max-width: 100%;
   }
 
   .left-pane .profile-footer {
@@ -778,10 +761,15 @@ body {
     max-width: 100%;
   }
 
+  .col-2 {
+    margin-top: 0;
+  }
+
   .project-card {
     max-width: 100%;
     height: 420px;
     min-height: 420px;
+    aspect-ratio: auto;
   }
 
   .contact-backdrop {

@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       closeContactModal();
       setActiveNav('work');
-      if (window.innerWidth <= 768 && rightPane) {
+      if (window.innerWidth < 992 && rightPane) {
         rightPane.scrollIntoView({ behavior: 'smooth' });
       } else if (rightPane) {
         rightPane.scrollTo({ top: 0, behavior: 'smooth' });
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
     setActiveNav('contact');
     // Focus first input field smoothly on desktop
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 992) {
       setTimeout(() => {
         if (inputName) inputName.focus();
       }, 150);
