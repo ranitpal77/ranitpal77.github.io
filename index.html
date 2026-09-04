@@ -141,7 +141,6 @@
                     </svg>
                     <span>Visit</span>
                   </a>
-                  <!-- GitHub Repository Placeholder: Edit below or in script.js projectsData -->
                   <a href="https://github.com/ranitpal77/rental-deposit" target="_blank" rel="noopener noreferrer"
                     class="card-btn code-btn">
                     <svg class="btn-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
@@ -178,7 +177,6 @@
                     </svg>
                     <span>Visit</span>
                   </a>
-                  <!-- GitHub Repository Placeholder: Edit below or in script.js projectsData -->
                   <a href="https://github.com/ranitpal77/bouquet" target="_blank" rel="noopener noreferrer"
                     class="card-btn code-btn">
                     <svg class="btn-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
@@ -220,7 +218,6 @@
                     </svg>
                     <span>Visit</span>
                   </a>
-                  <!-- GitHub Repository Placeholder: Edit below or in script.js projectsData -->
                   <a href="https://github.com/ranitpal77/TimeLockedSavings" target="_blank" rel="noopener noreferrer"
                     class="card-btn code-btn">
                     <svg class="btn-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
@@ -257,7 +254,6 @@
                     </svg>
                     <span>Visit</span>
                   </a>
-                  <!-- GitHub Repository Placeholder: Edit below or in script.js projectsData -->
                   <a href="https://github.com/ranitpal77/pinch" target="_blank" rel="noopener noreferrer"
                     class="card-btn code-btn">
                     <svg class="btn-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
@@ -362,6 +358,10 @@
       <!-- Right side: Dark Form Card -->
       <div class="contact-side-form">
         <form class="contact-form" id="contact-form" novalidate>
+          <!-- Honeypot anti-spam protection (hidden) -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1"
+            autocomplete="off" />
+
           <div class="input-block">
             <label for="input-name" class="input-label">Name</label>
             <input type="text" id="input-name" name="name" class="input-control" placeholder="Enter your name" required
@@ -392,6 +392,9 @@
     </div>
   </div>
 
+  <!-- Runtime configuration -->
+  <script>window.CONFIG = window.CONFIG || {};</script>
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 
